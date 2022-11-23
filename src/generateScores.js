@@ -72,7 +72,7 @@ const generateScore = (attributes, teamMemberAverages) => {
 
 /**
  * @param {Object} teamMembers
- * @return {Number} - average of all attributes
+ * @return {Object} - Object containing average of all attributes
  */
 const createAverages = (teamMembers) => {
   let intelligence = 0;
