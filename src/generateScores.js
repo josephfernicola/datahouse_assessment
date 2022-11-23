@@ -7,8 +7,7 @@ export const scoreAllApplicants = (jsonData) => {
   const applicants = jsonData["applicants"];
   const teamMembers = jsonData["team"];
 
-  const weights = createWeightedAttributes(teamMembers);
-  const averagedWeights = createAverageOfWeightedValues(weights);
+  const averagedWeights = createAverageOfWeightedValues(teamMembers);
 
   //Format for the return array of objects for all scores
   const completedScores = { scoresForAllApplicants: [] };
@@ -31,38 +30,44 @@ export const scoreAllApplicants = (jsonData) => {
  * Input is the attributes for each applicant and generates a score for them based on attributes
  */
 const generateScore = (attributes, averagedWeights) => {
+
+  // Compare each attribute to the averageWeights and how close they are
   attributes.strength =
-    parseInt(attributes.strength) * averagedWeights.strength;
+    parseInt(attributes.strength) - averagedWeights.strength;
   attributes.endurance =
-    parseInt(attributes.endurance) * averagedWeights.endurance;
+    parseInt(attributes.endurance) - averagedWeights.endurance;
   attributes.intelligence =
-    parseInt(attributes.intelligence) * averagedWeights.intelligence;
+    parseInt(attributes.intelligence) - averagedWeights.intelligence;
   attributes.spicyFoodTolerance =
-    parseInt(attributes.spicyFoodTolerance) *
+    parseInt(attributes.spicyFoodTolerance) -
     averagedWeights.spicyFoodTolerance;
+
+  if (attributes.strength < 1) {
+    attributes.strength *= -1;
+  }
+  if (attributes.endurance < 1) {
+    attributes.endurance *= -1;
+  }
+  if (attributes.intelligence < 1) {
+    attributes.intelligence *= -1;
+  }
+  if (attributes.spicyFoodTolerance < 1) {
+    attributes.spicyFoodTolerance *= -1;
+  }
 
   let finalScore = Object.values(attributes).reduce(
     (accumulator, currentValue) => accumulator + currentValue
   );
   finalScore /= 40;
 
-  return parseFloat(finalScore.toFixed(3));
-};
+  finalScore -= 1;
 
-/**
- * @param {Object} teamMembers - all team members
- * @return {Object} - team members after dividing all of their attribute values by 10
- */
-const createWeightedAttributes = (teamMembers) => {
-  teamMembers.forEach((member) => {
-    member.attributes.intelligence =
-      parseInt(member.attributes.intelligence) / 10;
-    member.attributes.strength = parseInt(member.attributes.strength) / 10;
-    member.attributes.endurance = parseInt(member.attributes.endurance) / 10;
-    member.attributes.spicyFoodTolerance =
-      parseInt(member.attributes.spicyFoodTolerance) / 10;
-  });
-  return teamMembers;
+  if (finalScore !== 0) {
+    return parseFloat(finalScore.toFixed(3)) * -1;
+  } else {
+    //perfect compatability
+    return 1;
+  }
 };
 
 /**

@@ -22,7 +22,7 @@ npm start
 
 **src/generateScores.js**
 
-Contains the functionality for generating a compatability score for each applicant and sending the data back. The compatability score is based on the team members and what their attribute scores are. All attributes for the team members are first divided by 10, which will return a number between 0-1. Ex: Intelligence is a 4 for a team member, so the createWeightedAttributes function would return 0.4. Then createAverageOfWeightedValues function creates the average attributes of all team members. Ex: 3 team members have intelligence scores of 4, 8, and 3. This would create an average of 0.5 after dividing each by 10. This average value is the amount that each score is weighted for the applicants to generate a compatability score. If the average for intelligence is 0.5, then generateScores function would multiply the intelligence rating of the applicant by 0.5. This is done for all applicant attributes. All attributes are added up and divided by 40 to ensure that a score never goes beyond 1.
+Contains the functionality for generating a compatability score for each applicant and sending the data back. The compatability score is based on the team members and what their attribute scores are. createAverageOfWeightedValues function creates the average attributes of all team members. Ex: 3 team members have intelligence scores of 4, 8, and 3. This would create an average of 5. This average value is compared to the applicant attributes by subtracting them to see how closely related they are. Lower numbers indicate high compatability since they are close to one another. This is done for all applicant attributes. All attributes are added up and divided by 40 to ensure that a score never goes beyond 1. Then this finalScore number is subtracted by 1 to generate the compatability score. In the case that a finalScore value is zero which indicates perfect compatability, 1 is returned.
 
 **src/index.js**
 
@@ -102,15 +102,15 @@ Sets up the server. Sets up the POST route at "/" endpoint, implements the expre
     "scoresForAllApplicants": [
         {
             "name": "John",
-            "score": 0.121
+            "score": 0.825
         },
         {
             "name": "Jane",
-            "score": 0.165
+            "score": 0.858
         },
         {
             "name": "Joe",
-            "score": 0.131
+            "score": 0.617
         }
     ]
 }
