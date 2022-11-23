@@ -7,7 +7,7 @@ export const scoreAllApplicants = (jsonData) => {
   const applicants = jsonData["applicants"];
   const teamMembers = jsonData["team"];
 
-  const averagedWeights = createAverageOfWeightedValues(teamMembers);
+  const averagedWeights = createAverages(teamMembers);
 
   //Format for the return array of objects for all scores
   const completedScores = { scoresForAllApplicants: [] };
@@ -30,7 +30,6 @@ export const scoreAllApplicants = (jsonData) => {
  * Input is the attributes for each applicant and generates a score for them based on attributes
  */
 const generateScore = (attributes, averagedWeights) => {
-
   // Compare each attribute to the averageWeights and how close they are
   attributes.strength =
     parseInt(attributes.strength) - averagedWeights.strength;
@@ -65,16 +64,16 @@ const generateScore = (attributes, averagedWeights) => {
   if (finalScore !== 0) {
     return parseFloat(finalScore.toFixed(3)) * -1;
   } else {
-    //perfect compatability
+    //Indicated perfect compatability
     return 1;
   }
 };
 
 /**
- * @param {Object} attributes - attribute values after they have been divided by 10
- * @return {Number} - average of all attributes that is between 0-1
+ * @param {Object} teamMembers
+ * @return {Number} - average of all attributes
  */
-const createAverageOfWeightedValues = (teamMembers) => {
+const createAverages = (teamMembers) => {
   let intelligence = 0;
   let strength = 0;
   let endurance = 0;
