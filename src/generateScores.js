@@ -39,5 +39,3 @@ const generateScore = (attributes) => {
 
   return finalScore;
 };
-
-// Object.contains a property that all matches, make sure it
