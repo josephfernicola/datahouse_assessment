@@ -31,7 +31,6 @@ export const scoreAllApplicants = (jsonData) => {
  * Input is the attributes for each applicant and generates a score for them based on attributes
  */
 const generateScore = (attributes, averagedWeights) => {
-  //Strength and endurance and weighted more heavily than intelligence and spicyFoodTolerance
   attributes.strength =
     parseInt(attributes.strength) * averagedWeights.strength;
   attributes.endurance =
