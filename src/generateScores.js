@@ -26,13 +26,18 @@ export const scoreAllApplicants = (jsonApplicantData) => {
  * Input is the attributes for each applicant and generates a score for them based on attributes
  */
 const generateScore = (attributes) => {
-  //Add up all attributes and divide by 4 to get the average
-  let average = Object.values(attributes).reduce(
+  //Weight strength and endurance more than intelligence and spicy food tolerance
+  attributes.strength = parseInt(attributes.strength) * 1.5;
+  attributes.endurance = parseInt(attributes.endurance) * 1.5;
+  attributes.intelligence = parseInt(attributes.intelligence) * 0.5;
+  attributes.spicyFoodTolerance = parseInt(attributes.spicyFoodTolerance) * 0.5;
+
+  let finalScore = Object.values(attributes).reduce(
     (accumulator, currentValue) => accumulator + currentValue
   );
-  average /= 4;
+  finalScore /= 40;
 
-  //Divide by 10 to get the final score to be between 0-1
-  const finalScore = average / 10;
   return finalScore;
 };
+
+// Object.contains a property that all matches, make sure it
