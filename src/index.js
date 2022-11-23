@@ -3,7 +3,7 @@ import { scoreAllApplicants } from "./generateScores";
 
 //Set up express server at PORT 4000
 const app = express();
-const PORT = 4000;
+const PORT = 5000;
 
 //To parse JSON data
 app.use(express.json());
