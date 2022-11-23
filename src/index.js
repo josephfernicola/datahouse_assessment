@@ -10,17 +10,17 @@ app.use(express.json());
 
 //Endpoint for handling requests
 app.post("/", (req, res) => {
-  const jsonApplicantData = req.body;
-  if (!jsonApplicantData["applicants"]) {
+  const jsonData = req.body;
+  if (!jsonData["applicants"]) {
     res.status(400).send("No applicants in request");
   }
-  
+
   //input check to ensure request is an object
-  if (typeof jsonApplicantData !== "object") {
+  if (typeof jsonData !== "object") {
     res.status(400).send("Bad request");
   }
   //input check to ensure request contains all necessary attributes
-  jsonApplicantData["applicants"].forEach((applicant) => {
+  jsonData["applicants"].forEach((applicant) => {
     if (
       !("intelligence" in applicant.attributes) ||
       !("endurance" in applicant.attributes) ||
@@ -36,7 +36,7 @@ app.post("/", (req, res) => {
     }
   });
 
-  const namesAndScores = scoreAllApplicants(jsonApplicantData);
+  const namesAndScores = scoreAllApplicants(jsonData);
   res.send(JSON.stringify(namesAndScores));
 });
 
