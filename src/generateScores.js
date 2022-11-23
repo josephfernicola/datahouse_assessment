@@ -43,16 +43,16 @@ const generateScore = (attributes, teamMemberAverages) => {
     parseInt(attributes.spicyFoodTolerance) -
     teamMemberAverages.spicyFoodTolerance;
 
-  if (attributes.strength < 1) {
+  if (attributes.strength < 0) {
     attributes.strength *= -1;
   }
-  if (attributes.endurance < 1) {
+  if (attributes.endurance < 0) {
     attributes.endurance *= -1;
   }
-  if (attributes.intelligence < 1) {
+  if (attributes.intelligence < 0) {
     attributes.intelligence *= -1;
   }
-  if (attributes.spicyFoodTolerance < 1) {
+  if (attributes.spicyFoodTolerance < 0) {
     attributes.spicyFoodTolerance *= -1;
   }
 
