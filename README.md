@@ -2,7 +2,7 @@
 
 This project is a backend express.js server that uses a scoring function in order to generate a compatability score for applicants. The server listens on port 5000 and handles post requests on the "/" endpoint. src/generateScores.js file is where the compatability scoring functionality is handled. The server will respond to the request with json data which contains the applicant names and all of their respective compatibility scores. Express middleware is implemented in order to handle json data parsing.
 
-Npm and node.js are pre-requisites to run this project. The package.json file contains all of the required scripts.
+Npm and node.js are pre-requisites to run this project. The package.json file contains the required script.
 
 # How to run
 
@@ -102,15 +102,101 @@ Sets up the server. Sets up the POST route at "/" endpoint, implements the expre
     "scoresForAllApplicants": [
         {
             "name": "John",
-            "score": 0.325
+            "score": 0.121
         },
         {
             "name": "Jane",
-            "score": 0.375
+            "score": 0.165
         },
         {
             "name": "Joe",
-            "score": 0.2125
+            "score": 0.131
+        }
+    ]
+}
+```
+
+## Postman test to ensure that a compatability score never goes above 1
+
+```
+{
+    "team": [
+        {
+            "name": "Eddie",
+            "attributes": {
+                "intelligence": 10,
+                "strength": 10,
+                "endurance": 10,
+                "spicyFoodTolerance": 10
+            }
+        },
+        {
+            "name": "Will",
+            "attributes": {
+                "intelligence": 10,
+                "strength": 10,
+                "endurance": 10,
+                "spicyFoodTolerance": 10
+            }
+        },
+        {
+            "name": "Mike",
+            "attributes": {
+                "intelligence": 10,
+                "strength": 10,
+                "endurance": 10,
+                "spicyFoodTolerance": 10
+            }
+        }
+    ],
+    "applicants": [
+        {
+            "name": "John",
+            "attributes": {
+                "intelligence": 10,
+                "strength": 10,
+                "endurance": 10,
+                "spicyFoodTolerance": 10
+            }
+        },
+        {
+            "name": "Jane",
+            "attributes": {
+                "intelligence": 7,
+                "strength": 4,
+                "endurance": 3,
+                "spicyFoodTolerance": 2
+            }
+        },
+        {
+            "name": "Joe",
+            "attributes": {
+                "intelligence": 1,
+                "strength": 1,
+                "endurance": 1,
+                "spicyFoodTolerance": 10
+            }
+        }
+    ]
+}
+```
+
+**_Expected Response_**
+
+```
+{
+    "scoresForAllApplicants": [
+        {
+            "name": "John",
+            "score": 1
+        },
+        {
+            "name": "Jane",
+            "score": 0.4
+        },
+        {
+            "name": "Joe",
+            "score": 0.325
         }
     ]
 }
