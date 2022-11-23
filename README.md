@@ -106,7 +106,7 @@ Sets up the server. Sets up the POST route at "/" endpoint, implements the expre
         },
         {
             "name": "Jane",
-            "score": 0.858
+            "score": 0.842
         },
         {
             "name": "Joe",
