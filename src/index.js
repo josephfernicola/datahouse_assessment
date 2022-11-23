@@ -14,7 +14,7 @@ app.post("/", (req, res) => {
   if (!jsonApplicantData["applicants"]) {
     res.status(400).send("No applicants in request");
   }
-
+  
   //input check to ensure request is an object
   if (typeof jsonApplicantData !== "object") {
     res.status(400).send("Bad request");

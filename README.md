@@ -28,9 +28,7 @@ Contains the functionality for generating a compatability score for each applica
 
 Sets up the server. Sets up the POST route at "/" endpoint, implements the express middleware for parsing the json data and listens on port 5000.
 
-# POST Request Example using REST API
-
-**Example post request was done with Postman for testing the server**
+# Using Postman to test POST request at "/" endpoint
 
 **_Body_**
 
