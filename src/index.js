@@ -1,5 +1,5 @@
 import express from "express";
-import { scoreAllApplicants } from "./generateScores";
+import { scoreAllApplicants } from "./generateScores.js";
 
 //Set up express server at PORT 4000
 const app = express();
