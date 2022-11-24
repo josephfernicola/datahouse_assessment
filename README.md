@@ -1,6 +1,6 @@
 # Project Description
 
-This project is a backend express.js server that uses a scoring function in order to generate a compatability score for applicants. The server listens on port 5000 and handles post requests on the "/" endpoint. src/generateScores.js file is where the compatability scoring functionality is handled. The server will respond to the request with json data which contains the applicant names and all of their respective compatibility scores. Express middleware is implemented in order to handle json data parsing.
+This project is a backend server that uses a scoring function in order to generate a compatability score for applicants. The server listens on port 5000 and handles post requests on the "/" endpoint. src/generateScores.js file is where the compatability scoring functionality is handled. The server will respond to the request with json data which contains the applicant names and all of their respective compatibility scores. Express middleware is implemented in order to handle json data parsing.
 
 Npm and node.js are pre-requisites to run this project. The package.json file contains the required script.
 
